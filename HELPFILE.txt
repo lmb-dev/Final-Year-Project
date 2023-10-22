@@ -1,1 +1,11 @@
-This file outlines the structure of this application
+This file outlines the structure of this gitlab repo:
+
+    Project Proposal.docx is the full length proposal document
+    Project Proposal Abridged.docx is a shortened, more summarized version
+
+    dual-bot-insights is the web application:
+        (npm run dev, ctrl+C)
+        It uses the Next.js web dev framework
+        Includes Typescript - extended version of JavaScript, dynamic web pages instead of .html
+        ESLint - code analysis tool
+        Tailwind CSS - styles web interfaces
