@@ -9,3 +9,24 @@ This file outlines the structure of this gitlab repo:
         Includes Typescript - extended version of JavaScript, dynamic web pages instead of .html
         ESLint - code analysis tool
         Tailwind CSS - styles web interfaces
+
+        File descriptions:
+            .next - build-related files
+            .vercel - vercel deployment
+            node_module - 3rd party libraries/dependencies
+            public - static assets (images)
+            src - source code
+            favicon.ico - browser tab icon
+            globals.css - global css styles
+            layout.tsx - defines layout strcuture of pages
+            page.tsx - placeholder page
+            .eslintrc.json - ESLint config (code analysis)
+            .gitignore - files for git to ignore
+            next-env.d.ts - global TypeScript types
+            next.config.js - nextjs config
+            package-lock.json - locks in dependancy versions
+            package.json - list of dependencies 
+            postcss.config.js - css plugins
+            README.txt - documentation/support
+            tailwind.config.json - tailwind css setup
+            tsconfig.json - typescript config

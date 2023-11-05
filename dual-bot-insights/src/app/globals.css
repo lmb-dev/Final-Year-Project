@@ -2,26 +2,130 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+:root {                       /*colour scheme for light mode*/
+  --background-dark: rgb(247, 234, 222);
+  --background-light: rgb(255, 224 , 204, 0.9);
+  --text-one: rgb(33, 70, 109);
+  --text-two: rgb(228, 95, 103);
+  --text-three: rgb(145, 122, 107);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  :root {                       /*colour scheme for dark mode*/
+    --background-dark: rgb(8, 21, 33);
+    --background-light: rgba(0, 31, 51, 0.9);
+    --text-one: rgb(222, 185, 146);
+    --text-two: rgb(27, 160, 152);
+    --text-three: rgb(110, 133, 148);
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+body {                       /*applies the colour schemes*/
+  color: var(--text-one);
+  background: var(--background-dark);
+}
+
+.text{
+  color: var(--text-three);
+}
+
+.box{
+  background: var(--background-light);
+  border-color: transparent;
+}
+
+
+
+/*things for main*/
+.main-blur {
+  animation: blurIn 1s ease-in-out forwards;
+
+}
+
+@keyframes blurIn{
+  0%{
+    filter: blur(5px);
+  }
+  100%{
+    filter: blur(0);
+  }
+}
+
+
+/*things for the intro*/
+
+.intro-box{
+  background: var(--background-light);
+  border-color: transparent;
+  animation: fadeInUp 2s ease-in-out 0.5s forwards;
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-out {
+  animation: fadeOut 1s ease-in-out forwards;
+}
+
+@keyframes fadeInUp{
+  0%{
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut{
+  0%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100%{
+    opacity: 0;
+    transform: translateY(100px);
+  }
+}
+
+
+/*things for the header*/
+
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 1vw;
+  background: linear-gradient(to bottom, var(--background-light) 60%, var(--background-dark));
+  border-color: var(--text-one);
+  color: var(--text-two);
+}
+
+.border-line{
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 10%; 
+  height: 0.1vw;
+  background-color: var(--text-one);
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 99%;
+  animation: growLine 4s forwards;
+}
+
+@keyframes growLine{
+  0%{
+    width: 0;
+    visibility: visible;
+  }
+  100%{
+    width: 90%;
+    visibility: visible;
+  }
+}
+
+.header-text{
+  font-size: 1vw;
+  font-style: italic;
 }
