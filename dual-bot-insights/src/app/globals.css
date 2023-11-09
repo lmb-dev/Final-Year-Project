@@ -13,7 +13,7 @@
 @media (prefers-color-scheme: dark) {
   :root {                       /*colour scheme for dark mode*/
     --background-dark: rgb(8, 21, 33);
-    --background-light: rgba(0, 31, 51, 0.9);
+    --background-light: rgba(0, 31, 51, 0.95);
     --text-one: rgb(222, 185, 146);
     --text-two: rgb(27, 160, 152);
     --text-three: rgb(110, 133, 148);
@@ -34,6 +34,10 @@ body {                       /*applies the colour schemes*/
   border-color: transparent;
 }
 
+.custom-list {
+  list-style-type: disc; /* You can change 'disc' to other values like 'circle' or 'square' for different bullet styles */
+  margin-left: 20px; /* Adjust the margin as needed */
+}
 
 
 /*things for main*/
@@ -49,6 +53,44 @@ body {                       /*applies the colour schemes*/
   100%{
     filter: blur(0);
   }
+}
+
+fieldset.likertScale{   /*general scale*/
+  color: var(--text-one);
+  padding: 1em;
+  border: thin solid; 
+  border-color: var(--text-three);
+  border-radius: 1em;
+  display: block;
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+
+fieldset.likertScale .likertIndicator{    /*the circles*/
+  border: thin solid;
+  border-color: var(--text-three);
+  background-color: var(--background-dark);
+}
+
+fieldset.likertScale .likertResponse > input:checked + .likertIndicator { /*when select*/
+  background-color: var(--text-two);
+}
+
+fieldset.likertScale .likertResponse:hover .likertIndicator {  /*when hover*/
+  background-color: var(--text-two);
+}
+
+fieldset.likertScale .likertLine{   /*connecting line*/
+  border-top: 2px solid;
+  border-color: var(--text-three);
+}
+
+fieldset.likertScale.noLine .likertLine {
+  border-top: 0px;
+}
+
+fieldset.likertScale .likertText{  /*response text*/
+  color: var(--text-two);
 }
 
 
@@ -95,11 +137,13 @@ body {                       /*applies the colour schemes*/
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  padding: 1vw;
-  background: linear-gradient(to bottom, var(--background-light) 60%, var(--background-dark));
+  padding: 1.25vw;
+  background: var(--background-light);
   border-color: var(--text-one);
+  border-radius: 0%;
   color: var(--text-two);
+  z-index: 2;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 .border-line{
@@ -120,7 +164,7 @@ body {                       /*applies the colour schemes*/
     visibility: visible;
   }
   100%{
-    width: 90%;
+    width: 100%;
     visibility: visible;
   }
 }

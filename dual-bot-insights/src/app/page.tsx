@@ -20,7 +20,7 @@ export default function Home() {
         <Body />
       </div>
 
-      <div className="absolute z-1">
+      <div className="absolute">
         <Intro onButtonClick={onButtonClick}/>
       </div>
 
