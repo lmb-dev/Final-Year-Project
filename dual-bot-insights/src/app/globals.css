@@ -2,160 +2,229 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {                       /*colour scheme for light mode*/
-  --background-dark: rgb(247, 234, 222);
-  --background-light: rgb(255, 224 , 204, 0.9);
-  --text-one: rgb(33, 70, 109);
-  --text-two: rgb(228, 95, 103);
-  --text-three: rgb(145, 122, 107);
-}
+/*#region font*/
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Hw3aXpsog.woff2) format('woff2');
+    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+/*#endregion */
 
-@media (prefers-color-scheme: dark) {
-  :root {                       /*colour scheme for dark mode*/
+/*#region colourSchemes*/
+  :root {                       /*colour scheme for light mode*/
+    --background-light: rgb(255, 255, 255);
+    --background-dark: rgb(240, 240, 240);
+    --text-one: rgb(33, 33, 33);
+    --text-two: rgb(0, 122, 116);
+    --text-three: rgb(77, 77, 77);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {                       /*colour scheme for dark mode*/
+      --background-dark: rgb(8, 21, 33);
+      --background-light: rgba(0, 31, 51);
+      --text-one: rgb(222, 185, 146);
+      --text-two: rgb(27, 160, 152);
+      --text-three: rgb(110, 133, 148);
+    }
+  }
+
+  :root[data-theme="light"]{
+    --background-light: rgb(255, 255, 255);
+    --background-dark: rgb(240, 240, 240);
+    --text-one: rgb(0, 122, 116);
+    --text-two: rgb(33, 33, 33);
+    --text-three: rgb(77, 77, 77);
+  }
+
+  :root[data-theme="dark"]{
     --background-dark: rgb(8, 21, 33);
-    --background-light: rgba(0, 31, 51, 0.95);
+    --background-light: rgba(0, 31, 51);
     --text-one: rgb(222, 185, 146);
     --text-two: rgb(27, 160, 152);
-    --text-three: rgb(110, 133, 148);
+    --text-three: rgb(110, 133, 148);  
   }
-}
+/*#endregion*/
 
-body {                       /*applies the colour schemes*/
+body {                       
   color: var(--text-one);
   background: var(--background-dark);
 }
 
 .text{
   color: var(--text-three);
-}
-
-.box{
-  background: var(--background-light);
-  border-color: transparent;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .custom-list {
-  list-style-type: disc; /* You can change 'disc' to other values like 'circle' or 'square' for different bullet styles */
-  margin-left: 20px; /* Adjust the margin as needed */
+  list-style-type: disc; 
+  margin-left: 20px; 
 }
 
-
-/*things for main*/
-.main-blur {
-  animation: blurIn 1s ease-in-out forwards;
-
-}
-
-@keyframes blurIn{
-  0%{
-    filter: blur(5px);
-  }
-  100%{
-    filter: blur(0);
-  }
-}
-
-fieldset.likertScale{   /*general scale*/
-  color: var(--text-one);
-  padding: 1em;
-  border: thin solid; 
-  border-color: var(--text-three);
-  border-radius: 1em;
-  display: block;
-  font-size: 20px;
-  margin-bottom: 25px;
-}
-
-fieldset.likertScale .likertIndicator{    /*the circles*/
-  border: thin solid;
-  border-color: var(--text-three);
-  background-color: var(--background-dark);
-}
-
-fieldset.likertScale .likertResponse > input:checked + .likertIndicator { /*when select*/
-  background-color: var(--text-two);
-}
-
-fieldset.likertScale .likertResponse:hover .likertIndicator {  /*when hover*/
-  background-color: var(--text-two);
-}
-
-fieldset.likertScale .likertLine{   /*connecting line*/
-  border-top: 2px solid;
-  border-color: var(--text-three);
-}
-
-fieldset.likertScale.noLine .likertLine {
-  border-top: 0px;
-}
-
-fieldset.likertScale .likertText{  /*response text*/
-  color: var(--text-two);
-}
-
-
-/*things for the intro*/
-
-.intro-box{
-  background: var(--background-light);
-  border-color: transparent;
-  animation: fadeInUp 2s ease-in-out 0.5s forwards;
-  opacity: 0;
-  z-index: 1;
-}
-
-.fade-out {
-  animation: fadeOut 1s ease-in-out forwards;
-}
-
-@keyframes fadeInUp{
-  0%{
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  100%{
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeOut{
-  0%{
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100%{
-    opacity: 0;
-    transform: translateY(100px);
-  }
-}
-
-
-/*things for the header*/
-
-.header{
+.toast {
   position: fixed;
-  top: 0;
-  left: 0;
-  padding: 1.25vw;
-  background: var(--background-light);
-  border-color: var(--text-one);
-  border-radius: 0%;
-  color: var(--text-two);
-  z-index: 2;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  top: 90px; 
+  right: 20px;
+  background-color: var(--background-light);
+  color: var(--text-one);
+  border-radius: 10px;
+  border: 1px ridge var(--text-one);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  opacity: 0.95;
 }
+
+
+/*#region main*/
+  .main-blur {
+    animation: blurIn 1s ease-in-out forwards;
+
+  }
+
+  @keyframes blurIn{
+    0%{
+      filter: blur(5px);
+    }
+    100%{
+      filter: blur(0);
+    }
+  }
+/*#endregion*/
+
+/* #region Likert Styling */
+
+  fieldset.likertScale{   /*general scale*/
+    color: var(--text-one);
+    padding: 1em;
+    border: thin solid; 
+    border-color: var(--text-three);
+    border-radius: 1em;
+    display: block;
+    font-size: 20px;
+    margin-bottom: 25px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  fieldset.likertScale .likertIndicator{    /*the circles*/
+    border: thin solid;
+    border-color: var(--text-three);
+    background-color: var(--background-dark);
+  }
+
+  fieldset.likertScale .likertResponse > input:checked + .likertIndicator { /*when select*/
+    background-color: var(--text-two);
+  }
+
+  fieldset.likertScale .likertResponse:hover .likertIndicator {  /*when hover*/
+    background-color: var(--text-two);
+  }
+
+  fieldset.likertScale .likertLine{   /*connecting line*/
+    border-top: 2px solid;
+    border-color: var(--text-three);
+  }
+
+  fieldset.likertScale.noLine .likertLine {
+    border-top: 0px;
+  }
+
+  fieldset.likertScale .likertText{  /*response text*/
+    color: var(--text-two);
+  }
+
+/* #endregion*/
+
+/*#region intro*/
+  .intro-fill{
+    background: var(--background-light);
+    border-color: transparent;
+    width: 100%;
+    height: 50%;
+    z-index: 1;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .intro-accept{
+    background: var(--background-light);
+    border-color: transparent;
+    width: 250px;
+    height: 75px;
+    z-index: 1;
+    font-family: 'Montserrat', sans-serif;
+    font-size: larger;
+  }
+
+  .intro-title{
+    color: var(--text-one);
+  }
+  
+  .intro-text{
+    color: var(--text-three);
+  }
+/*#endregion*/
+
+/*#region header*/
+  .header{
+    padding: 1vw;
+    height: 75px;
+    background: var(--background-light);
+    border-color: var(--text-one);
+    border-radius: 0%;
+    color: var(--text-two);
+    z-index: 2;
+    font-family: 'Montserrat', sans-serif;
+    animation: fadeShadowOut 0.5s forwards;
+  }
+
+  .header-shadow{
+    animation: fadeShadowIn 0.5s forwards;
+  }
+
+  @keyframes fadeShadowIn{
+    0%{
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
+    }
+    100%{
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+  }
+  @keyframes fadeShadowOut{
+    0%{
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+    100%{
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
+    }
+  }
+
+  .header-text{
+    font-size: 20px;
+    font-style: italic;
+  }
+
+  .header-icon{
+    font-size: 300%;
+    font-style: italic;
+    color: var(--text-two);
+  }
+/*#endregion*/
+
+
 
 .border-line{
-  position: absolute;
   top: 100%;
   left: 50%;
   width: 10%; 
-  height: 0.1vw;
+  height: 1.5px;
   background-color: var(--text-one);
-  transform: translateX(-50%) translateY(-50%);
-  border-radius: 99%;
+  transform: translateX(0%) translateY(75px);
+  border-radius: 90%;
   animation: growLine 4s forwards;
+  z-index: 2;
 }
 
 @keyframes growLine{
@@ -164,12 +233,7 @@ fieldset.likertScale .likertText{  /*response text*/
     visibility: visible;
   }
   100%{
-    width: 100%;
+    width: 75%;
     visibility: visible;
   }
-}
-
-.header-text{
-  font-size: 1vw;
-  font-style: italic;
 }

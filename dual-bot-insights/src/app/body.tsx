@@ -290,7 +290,7 @@ export default function Body() {
   //#endregion
 
   return (
-    <div className="max-w-4xl px-4 flex-col justify-center items-center min-h-screen" style={{marginTop: '100px'}}>
+    <div className="max-w-4xl px-2 flex-col justify-center items-center min-h-screen" style={{marginTop: '100px', marginLeft:'500px'}}>
           <h1 className="mb-4 text-2xl">
             Tell us a bit about yourself:
           </h1>         
