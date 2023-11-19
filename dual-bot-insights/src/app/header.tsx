@@ -42,7 +42,7 @@ export default function Header() {
       useEffect(() => {
         const handleScroll = () => {
           const scrollPosition = window.scrollY;
-          setIsScrolled(scrollPosition > 250);
+          setIsScrolled(scrollPosition > 150);
         };
     
         window.addEventListener('scroll', handleScroll);
@@ -58,8 +58,8 @@ export default function Header() {
         
         <div className="flex items-center h-full">
           {isHoveredEmail
-            ? <HiOutlineMailOpen className="header-icon" style={{ cursor: 'pointer', marginLeft: '2vw', filter: isHoveredEmail ? `drop-shadow(0 0 10px ${'var(--text-two)'})` : 'none' }} onMouseEnter={handleMouseEnterEmail} onMouseLeave={handleMouseLeaveEmail} onClick={handleClickEmail} />
-            : <HiOutlineMail className="header-icon" style={{ cursor: 'pointer', marginLeft: '2vw' }} onMouseEnter={handleMouseEnterEmail} onMouseLeave={handleMouseLeaveEmail} onClick={handleClickEmail} />
+            ? <HiOutlineMailOpen className="header-icon" style={{ cursor: 'pointer', marginLeft: '2vw', filter: isHoveredEmail ? `drop-shadow(0 0 5px ${'var(--text-two)'})` : 'none' }} onMouseEnter={handleMouseEnterEmail} onMouseLeave={handleMouseLeaveEmail} onClick={handleClickEmail} onTouchStart={handleMouseEnterEmail} onTouchEnd={()=>{handleMouseLeaveEmail(); handleClickEmail();}}/>
+            : <HiOutlineMail className="header-icon" style={{ cursor: 'pointer', marginLeft: '2vw' }} onMouseEnter={handleMouseEnterEmail} onMouseLeave={handleMouseLeaveEmail} onClick={handleClickEmail} onTouchStart={handleMouseEnterEmail} onTouchEnd={()=>{handleMouseLeaveEmail(); handleClickEmail();}}/>
           }
           <span className="header-text ml-2 hidden md:block">
             Questions? Send an email!
@@ -68,13 +68,13 @@ export default function Header() {
 
         <div className="flex items-center h-full justify-end">
           {isHoveredMoon ||  (typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'dark')
-            ? <BsMoonFill className="header-icon" style={{ cursor: 'pointer', marginRight: '1vw', filter: isHoveredMoon ? `drop-shadow(0 0 10px ${'var(--text-two)'})` : 'none' }} onMouseEnter={handleMouseEnterMoon} onMouseLeave={handleMouseLeaveMoon} onClick={handleClickMoon} />
-            : <BsMoon className="header-icon" style={{ cursor: 'pointer', marginRight: '1vw' }} onMouseEnter={handleMouseEnterMoon} onMouseLeave={handleMouseLeaveMoon} onClick={handleClickMoon} />
+            ? <BsMoonFill className="header-icon" style={{ cursor: 'pointer', marginRight: '1vw', filter: isHoveredMoon ? `drop-shadow(0 0 5px ${'var(--text-two)'})` : 'none' }} onMouseEnter={handleMouseEnterMoon} onMouseLeave={handleMouseLeaveMoon} onClick={handleClickMoon} onTouchStart={handleMouseEnterMoon} onTouchEnd={()=>{handleMouseLeaveMoon(); handleClickMoon();}}/>
+            : <BsMoon className="header-icon" style={{ cursor: 'pointer', marginRight: '1vw' }} onMouseEnter={handleMouseEnterMoon} onMouseLeave={handleMouseLeaveMoon} onClick={handleClickMoon} onTouchStart={handleMouseEnterMoon} onTouchEnd={()=>{handleMouseLeaveMoon(); handleClickMoon();}}/>
           }
 
           {isHoveredSun ||  (typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'light')
-            ? <BsSunFill className="header-icon" style={{ cursor: 'pointer', marginRight: '2vw', filter: isHoveredSun ? `drop-shadow(0 0 10px ${'var(--text-two)'})` : 'none' }} onMouseEnter={handleMouseEnterSun} onMouseLeave={handleMouseLeaveSun} onClick={handleClickSun} />
-            : <BsSun className="header-icon" style={{ cursor: 'pointer', marginRight: '2vw' }} onMouseEnter={handleMouseEnterSun} onMouseLeave={handleMouseLeaveSun} onClick={handleClickSun} />
+            ? <BsSunFill className="header-icon" style={{ cursor: 'pointer', marginRight: '2vw', filter: isHoveredSun ? `drop-shadow(0 0 5px ${'var(--text-two)'})` : 'none' }} onMouseEnter={handleMouseEnterSun} onMouseLeave={handleMouseLeaveSun} onClick={handleClickSun} onTouchStart={handleMouseEnterSun} onTouchEnd={()=>{handleMouseLeaveSun(); handleClickSun();}}/>
+            : <BsSun className="header-icon" style={{ cursor: 'pointer', marginRight: '2vw' }} onMouseEnter={handleMouseEnterSun} onMouseLeave={handleMouseLeaveSun} onClick={handleClickSun} onTouchStart={handleMouseEnterSun} onTouchEnd={()=>{handleMouseLeaveSun(); handleClickSun();}}/>
           }
         </div> 
       </header>
