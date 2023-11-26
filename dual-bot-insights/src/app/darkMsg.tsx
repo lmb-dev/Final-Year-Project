@@ -16,7 +16,7 @@ export default function Intro() {
   return (
     <>
       {isVisible && (
-        <div className="toast font-semibold" style={{filter: isHovered ? `drop-shadow(0 0 3px ${'var(--text-one)'})` : 'none'}}>
+        <div className="toast font-semibold" style={{filter: isHovered ? `drop-shadow(0 0 3px ${'var(--text-three)'})` : 'none'}}>
           Try out dark mode!
           {isHovered
             ? <button className="ml-2" style={{ color:`${'var(--text-one)'}`, filter: `drop-shadow(0 0 5px ${'var(--text-one)'})`}} onClick={handleClose} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}> X </button>

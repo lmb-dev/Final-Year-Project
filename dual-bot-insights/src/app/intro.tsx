@@ -24,7 +24,7 @@ export default function Intro({onBlurClick}: {onBlurClick:() => void}) {
       <div className="border-line"></div>
       
       <div className={`intro-fill ${isClicked ? 'title-up' : ''}`}>
-        <h1 className="intro-title text-[6vw] font-bold mb-3 mt-28">Welcome to <br></br> Dual-Bot Insights <span className="version-text"> Version 0.3</span></h1>
+        <h1 className="intro-title text-[6vw] font-bold mb-3 mt-28">Welcome to <br></br> Dual-Bot Insights <span className="version-text"> Version 0.4</span></h1>
         <p className="intro-text text-[2vw] sm:text-[1.5vw] md:text-[1.25vw] lg:text-[0.75vw]">This website is host to a study that explores peoples preferences when interacting with chatbots in an effort to improve our understanding of Human-Machine Communication</p>        
       </div>
 
@@ -37,7 +37,7 @@ export default function Intro({onBlurClick}: {onBlurClick:() => void}) {
           <div className="intro-box">
             <ImBubble className="intro-icon mb-3"></ImBubble>
             <h1 className="intro-title font-semibold text-[1.75vw] sm:text-[1.75vw] md:text-[1.5vw] lg:text-[1vw]">What you are about to do:</h1>
-            <p className="intro-text text-[1.75vw] sm:text-[1.5vw] md:text-[1.25vw] lg:text-[0.8vw]">You are about to answer a few general questions, and then interact with two chatbots, each with a unique style. Afterwards you'll be asked several questions about your interactions with them</p>
+            <p className="intro-text text-[1.75vw] sm:text-[1.5vw] md:text-[1.25vw] lg:text-[0.8vw]">You are about to answer a few general questions, and then converse with two chatbots, each with a unique style, <span className="font-semibold">around the topic of animals.</span></p>
           </div>
 
           <div className="intro-box">
@@ -49,7 +49,7 @@ export default function Intro({onBlurClick}: {onBlurClick:() => void}) {
           <div className="intro-box mb-5">
             <ImConfused className="intro-icon mb-3"></ImConfused>
             <h1 className="intro-title font-semibold text-[1.75vw] sm:text-[1.75vw] md:text-[1.5vw] lg:text-[1vw]">A note about chatbots:</h1>
-            <p className="intro-text text-[1.75vw] sm:text-[1.5vw] md:text-[1.25vw] lg:text-[0.8vw]">Chatbots have been known to "hallucinate" meaning that they can generate incorrect or nonsensical responses. These occurences should be recognised and taken into account</p>
+            <p className="intro-text text-[1.75vw] sm:text-[1.5vw] md:text-[1.25vw] lg:text-[0.8vw]">Chatbots have been known to hallucinate meaning that they can generate incorrect or nonsensical responses. These occurences should be recognised and taken into account</p>
           </div>
         </div>
       </div>

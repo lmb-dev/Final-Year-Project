@@ -11,11 +11,22 @@ import PreQ1 from './preq1'
 import PreQ2 from './preq2'
 import PreQ3 from './preq3'
 
-import React, { useState } from 'react';
+import Chat1 from './chat1'
+import Chat2 from './chat2'
+
+import PostQ1 from './postq1'
+import PostQ2 from './postq2'
+
+import End from './end'
+
+import React, { useEffect, useState } from 'react';
+
+
 
 export default function Home() {
   const [blurBody, setBlurBody] = useState(false);
   const [stage, setStage] = useState(1);
+
 
   const onBlurClick = () => {
     setBlurBody(true);
@@ -40,25 +51,48 @@ export default function Home() {
       break;
 
     case 4:
-      //chatbot 1
+      currentStage = <Chat1 changeStage={changeStage}/>
       break;
 
     case 5:
-      //PostQ1
+      currentStage = <PostQ1 changeStage={changeStage}/>
       break;
     
     case 6:
-      //chatbot 2
+      currentStage = <Chat2 changeStage={changeStage}/>
       break;
     
     case 7:
-      //PostQ2
+      currentStage = <PostQ2 changeStage={changeStage}/>
+      break;
+    
+    case 8:
+      currentStage = <End/>
       break;
   }
   
+  
+  
+  //#region dev hacks
+    const handleKeyDown = (event: { shiftKey: any; key: string; }) => {
+      if (event.shiftKey && event.key === 'S') {
+        changeStage();
+      }
+    };
 
+    const handleKeyDown2 = (event: { shiftKey: any; key: string; }) => {
+      if (event.shiftKey && event.key === 'A') {
+        setStage(stage-1);
+      }
+    };
+
+    useEffect(() => {
+      window.addEventListener('keydown', handleKeyDown);
+      window.addEventListener('keydown', handleKeyDown2);
+    }); 
+  //#endregion
+  
   return (
-    // flexible layout
     <main className="flex flex-col">   
       <div>
         <Intro onBlurClick={onBlurClick}/>
@@ -73,9 +107,7 @@ export default function Home() {
     </main>
 
   );
+  
 }
-
-
-
 
 

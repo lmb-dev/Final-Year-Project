@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 // @ts-ignore
 import Likert from 'react-likert-scale';
 
-export default function Body({changeStage}: {changeStage:() => void}) {
+export default function PreQ3({changeStage}: {changeStage:() => void}) {
     const fivePointScale= [
         { value: 1, text: "Disagree strongly" },
         { value: 2, text: "Disagree a little" },
@@ -113,9 +113,9 @@ export default function Body({changeStage}: {changeStage:() => void}) {
     //#endregion
   
     return (
-        <div className="relative flex flex-col justify-center items-center w-full text-[2.5vw] sm:text-[2.5vw] md:text-[2.5vw] lg:text-[1.75vw] h-[155vw] sm:h-[160vw] md:h-[170vw] lg:h-[95vw]">
-            <h1 className="mb-2 text-center">
-                Again, please select each statement to indicate the extent to which you agree or disagree, this time regarding your attitudes towards artificial intelligence:
+        <div className="relative flex flex-col justify-center items-center w-full text-[2.5vw] sm:text-[2.5vw] md:text-[2.5vw] lg:text-[1.75vw] h-[160vw] sm:h-[170vw] md:h-[180vw] lg:h-[100vw]">
+            <h1 className="mb-2 text-center w-[90%]">
+                Again, please select each option to indicate the extent to which you agree or disagree, this time regarding your attitudes towards artificial intelligence:
             </h1>
 
             <Likert {...GAAIS1} className={`${likertResponses[0] === 0 ? ' ' : 'likert-fade'}`}/>
@@ -127,7 +127,7 @@ export default function Body({changeStage}: {changeStage:() => void}) {
             <Likert {...GAAIS7} className={`${likertResponses[6] === 0 ? ' ' : 'likert-fade'}`}/>
             <Likert {...GAAIS8} className={`${likertResponses[7] === 0 ? ' ' : 'likert-fade'}`}/>         
 
-            <button className={`rounded-lg font-semibold ${isClicked ? 'button-fade' : ''}`} style={{ filter: isHovered ? `drop-shadow(0 0 1px ${'var(--text-one)'})` : 'none' }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleClick} onTouchStart={handleMouseEnter} onTouchEnd={()=>{handleMouseLeave(); handleClick();}}>
+            <button className={`text-[5vw] sm:text-[5vw] md:text-[4vw] lg:text-[3vw] rounded-lg font-semibold ${isClicked ? 'button-fade' : ''}`} style={{ filter: isHovered ? `drop-shadow(0 0 1px ${'var(--text-one)'})` : 'none' }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleClick} onTouchStart={handleMouseEnter} onTouchEnd={()=>{handleMouseLeave(); handleClick();}}>
                 Continue
             </button>
 

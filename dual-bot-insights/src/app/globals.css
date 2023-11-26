@@ -59,10 +59,21 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+.title{
+  color: var(--text-one);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.accent{
+  color: var(--text-two);
+  font-family: 'Montserrat', sans-serif;
+}
+
 .custom-list {
   list-style-type: disc; 
   margin-left: 20px; 
 }
+
 
 .toast {
   position: fixed;
@@ -72,7 +83,7 @@ body {
   background-color: var(--background-light);
   color: var(--text-one);
   border-radius: 10px;
-  border: 1px ridge var(--text-one);
+  border: 1px ridge var(--text-three);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
@@ -372,4 +383,33 @@ body {
   }
 /*#endregion*/
 
+/*#region chat*/
+  .send-input{
+    background: var(--background-light);
+    font-family: 'Montserrat', sans-serif;
+    border: 1px solid var(--text-three);
+    border-radius: 25px;
+    width: 100px;
+  }
 
+  .chat-input{
+    background: var(--background-light);
+    font-family: 'Montserrat', sans-serif;
+    border: 1px solid var(--text-three);
+    border-radius: 10px;
+    width: 80%;
+  }
+
+  .message-fade{
+    animation: messageFade 1s forwards;
+  }
+
+  @keyframes messageFade{
+    0%{
+      opacity: 1;
+    }
+    100%{
+      opacity: 0.5;
+    }
+  }
+/*#endregion*/
