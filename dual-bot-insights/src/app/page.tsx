@@ -3,6 +3,7 @@
 import './globals.css';
 
 import Intro from './intro'
+import TaC from './tac'
 
 import Header from './header'
 import DarkMsg from './darkMsg'
@@ -21,11 +22,16 @@ import End from './end'
 
 import React, { useEffect, useState } from 'react';
 
+const randomizer = Math.random(); //randomize for order effect
 
+let dbList: number[] = [];
+const createList = (intArray: number[]) =>{
+  dbList = [...dbList, ...intArray];
+}
 
 export default function Home() {
   const [blurBody, setBlurBody] = useState(false);
-  const [stage, setStage] = useState(1);
+  const [stage, setStage] = useState(0);
 
 
   const onBlurClick = () => {
@@ -36,43 +42,71 @@ export default function Home() {
     setStage(stage+1);
   };
 
+
   let currentStage;
-  switch (stage){
+  switch (stage){ 
+    case 0:
+      currentStage = <TaC changeStage={changeStage}/>
+      break;
+
     case 1:
-      currentStage = <PreQ1 changeStage={changeStage}/>
+      currentStage = <PreQ1 changeStage={changeStage} createList={createList}/>
       break;
     
     case 2:
-      currentStage = <PreQ2 changeStage={changeStage}/>
+      currentStage = <PreQ2 changeStage={changeStage} createList={createList}/>
       break;
 
     case 3:
-      currentStage = <PreQ3 changeStage={changeStage}/>
+      currentStage = <PreQ3 changeStage={changeStage} createList={createList}/>
       break;
 
     case 4:
-      currentStage = <Chat1 changeStage={changeStage}/>
-      break;
+      if(randomizer < 0.5){
+        currentStage = <Chat1 changeStage={changeStage} createList={createList}/>
+        break;
+      }
+      else{
+        currentStage = <Chat2 changeStage={changeStage} createList={createList}/>
+        break;
+      }
 
     case 5:
-      currentStage = <PostQ1 changeStage={changeStage}/>
-      break;
+      if(randomizer < 0.5){
+        currentStage = <PostQ1 changeStage={changeStage} createList={createList}/>
+        break;
+      }
+      else{
+        currentStage = <PostQ2 changeStage={changeStage} createList={createList}/>
+        break;
+      }
     
     case 6:
-      currentStage = <Chat2 changeStage={changeStage}/>
-      break;
-    
+      if(randomizer < 0.5){
+        currentStage = <Chat2 changeStage={changeStage} createList={createList}/>
+        break;
+      }
+      else{
+        currentStage = <Chat1 changeStage={changeStage} createList={createList}/>
+        break;
+      }
+  
     case 7:
-      currentStage = <PostQ2 changeStage={changeStage}/>
-      break;
+      if(randomizer < 0.5){
+        currentStage = <PostQ2 changeStage={changeStage} createList={createList}/>
+        break;
+      }
+      else{
+        currentStage = <PostQ1 changeStage={changeStage} createList={createList}/>
+        break;
+      }
     
     case 8:
       currentStage = <End/>
       break;
   }
   
-  
-  
+    
   //#region dev hacks
     const handleKeyDown = (event: { shiftKey: any; key: string; }) => {
       if (event.shiftKey && event.key === 'S') {
@@ -107,7 +141,5 @@ export default function Home() {
     </main>
 
   );
-  
 }
-
 

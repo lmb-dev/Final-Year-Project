@@ -20,7 +20,7 @@ export default function End() {
       };
 
     return (
-        <div className="relative flex flex-col justify-center items-center w-full text-[2.5vw] sm:text-[2.5vw] md:text-[2.5vw] lg:text-[1.75vw] mt-[-40vw] sm:mt-[-40vw] md:mt-[-30vw] lg:mt-[-25vw]">
+        <div className="relative flex flex-col justify-center items-center w-full text-[2.5vw] sm:text-[2.5vw] md:text-[2.5vw] lg:text-[1.75vw] mt-[-25vh] sm:mt-[-30vh] md:mt-[-30vh] lg:mt-[-45vh]">
             <h1 className="title mb-2 text-center w-[80%] text-[6vw] sm:text-[6vw] md:text-[6vw] lg:text-[3vw]">
                 Thank you for participating in Dual-Bot Insights
             </h1>

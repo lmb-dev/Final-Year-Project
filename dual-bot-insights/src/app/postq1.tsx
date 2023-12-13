@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 // @ts-ignore
 import Likert from 'react-likert-scale';
 
-export default function PostQ1({changeStage}: {changeStage:() => void}) {
+export default function PostQ1({ changeStage, createList }: { changeStage: () => void; createList: (intArray: number[]) => void }) {
     const fivePointScale= [
         { value: 1, text: "Disagree strongly" },
         { value: 2, text: "Disagree a little" },
@@ -60,16 +60,14 @@ export default function PostQ1({changeStage}: {changeStage:() => void}) {
     //#endregion
 
     //#region Button Consts
-        const [isHovered, setIsHovered] = useState(false); 
         const [isClicked, setIsClicked] = useState(false);
         
-        const handleMouseEnter = () => setIsHovered(true);
-        const handleMouseLeave = () => setIsHovered(false);
         const handleClick = () => {
             if (likertResponses.includes(0)) {
                 alert("Please answer all questions before continuing.");
             } else {
                 setIsClicked(true);
+                createList(likertResponses);
                 changeStage();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
@@ -77,7 +75,7 @@ export default function PostQ1({changeStage}: {changeStage:() => void}) {
     //#endregion
   
     return (
-        <div className="relative flex flex-col justify-center items-center w-full text-[2.5vw] sm:text-[2.5vw] md:text-[2.5vw] lg:text-[1.75vw] h-[60vw] sm:h-[70vw] md:h-[90vw] lg:h-[30vw]">
+        <div className="relative flex flex-col justify-center items-center w-full text-[2.5vw] sm:text-[2.5vw] md:text-[2.5vw] lg:text-[1.75vw] mt-[-25vh] sm:mt-[-30vh] md:mt-[-30vh] lg:mt-[-45vh]">
             <h1 className="mb-2 text-center w-[90%]">
                 Below are some statements regarding the conversation youve just had. Please select each option to indicate the extent to which you agree or disagree with that statement.
             </h1>         
@@ -87,10 +85,12 @@ export default function PostQ1({changeStage}: {changeStage:() => void}) {
             <Likert {...lieQuestion} className={`${likertResponses[2] === 0 ? ' ' : 'likert-fade'}`} />
             <Likert {...satQuestion} className={`${likertResponses[3] === 0 ? ' ' : 'likert-fade'}`} />
 
-            <button className={`text-[5vw] sm:text-[5vw] md:text-[4vw] lg:text-[3vw] rounded-lg font-semibold ${isClicked ? 'button-fade' : ''}`} style={{ filter: isHovered ? `drop-shadow(0 0 1px ${'var(--text-one)'})` : 'none' }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleClick} onTouchStart={handleMouseEnter} onTouchEnd={()=>{handleMouseLeave(); handleClick();}}>
+            <button className={`text-[5vw] sm:text-[5vw] md:text-[4vw] lg:text-[3vw] rounded-lg font-semibold duration-300 ease-in-out hover:underline ${isClicked ? 'button-fade' : ''}`} onClick={handleClick} onTouchEnd={handleClick}>
                 Continue...
             </button>
 
         </div>
     );
 }
+
+
