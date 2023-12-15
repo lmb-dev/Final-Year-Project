@@ -17,8 +17,8 @@
   :root {                       /*colour scheme for light mode*/
     --background-light: rgb(255, 255, 255);
     --background-dark: rgb(240, 240, 240);
-    --text-one: rgb(33, 33, 33);
-    --text-two: rgb(0, 122, 116);
+    --text-one: rgb(0, 122, 116);
+    --text-two: rgb(33, 33, 33);
     --text-three: rgb(77, 77, 77);
   }
 
