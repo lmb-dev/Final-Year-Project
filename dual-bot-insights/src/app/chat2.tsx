@@ -8,11 +8,8 @@ import { useChat } from 'ai/react';
 
 export default function Chat1({ changeStage, createList }: { changeStage: () => void; createList: (intArray: number[]) => void }) {
     //#region Button Consts
-        const [isHovered, setIsHovered] = useState(false); 
         const [isClicked, setIsClicked] = useState(false);
         
-        const handleMouseEnter = () => setIsHovered(true);
-        const handleMouseLeave = () => setIsHovered(false);
         const handleClick = () => {
             setIsClicked(true);
             createList([1, messageCount]);
