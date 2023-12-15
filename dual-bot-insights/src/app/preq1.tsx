@@ -50,8 +50,8 @@ export default function PreQ1({ changeStage, createList }: { changeStage: () => 
                 { value: 1, text: "No formal education"},
                 { value: 2, text: "GCSE" },
                 { value: 3, text: "A-level"},
-                { value: 4, text: "Bachelor's degree"},
-                { value: 5, text: "Master's degree"},
+                { value: 4, text: "Bachelors degree"},
+                { value: 5, text: "Masters degree"},
                 { value: 6, text: "Doctoral degree"},
             ],
             // @ts-ignore
@@ -92,7 +92,7 @@ export default function PreQ1({ changeStage, createList }: { changeStage: () => 
     //#endregion
   
     return (
-        <div className="relative flex flex-col justify-center items-center w-full text-[2.5vw] sm:text-[2.5vw] md:text-[2.5vw] lg:text-[1.75vw] mt-[-25vh] sm:mt-[-30vh] md:mt-[-30vh] lg:mt-[-45vh]">
+        <div className="relative flex flex-col justify-center items-center w-full text-[2.75vw] sm:text-[2.5vw] md:text-[2.5vw] lg:text-[1.75vw] mt-[350px] sm:mt-[350px] md:mt-[400px] lg:mt-[400px]">
             <h1 className="mb-2 text-center w-[90%]">
                 Tell us a bit about yourself:
             </h1>         

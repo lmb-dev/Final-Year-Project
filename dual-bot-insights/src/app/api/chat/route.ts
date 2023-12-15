@@ -10,6 +10,9 @@ const apiConfig = new Configuration({
 
 const openai = new OpenAIApi(apiConfig)
 
+
+
+
 export async function POST(req: Request){
     const { messages } = await req.json()
 

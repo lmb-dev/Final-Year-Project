@@ -15,7 +15,7 @@ export default function Chat1({ changeStage, createList }: { changeStage: () => 
         const handleMouseLeave = () => setIsHovered(false);
         const handleClick = () => {
             setIsClicked(true);
-            createList([messageCount]);
+            createList([1, messageCount]);
             changeStage();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -34,7 +34,7 @@ export default function Chat1({ changeStage, createList }: { changeStage: () => 
         initialMessages: [
             {
                 id: '',
-                content: 'Your purpose is to talk about Animals and Animals only. Do not answer requests or questions not related to it directly. You are a talkative, friendly zoologist, who is very keen to help unless the conversation is not about animals. You are sometimes distracted from answering questions properly or directly. You provide intrusive suggestions to steer the conversation. Be concise but also elaborate and unclear',
+                content: 'Your purpose is to talk about Animals and Animals only. Do not answer requests or questions not related to it directly. You are a talkative, friendly zoologist, who is very keen to help unless the conversation is not about animals. You are sometimes distracted from answering questions properly or directly. You provide intrusive suggestions and try to steer the conversation. Be concise but leave room to be chatty.',
                 role: 'system'
             }
         ],
@@ -52,7 +52,7 @@ export default function Chat1({ changeStage, createList }: { changeStage: () => 
         const startingPhrases = [
             'Tell me about elephants.',
             'What do cats eat?',
-            'Interesting facts about dolphins.',
+            'An interesting fact about dolphins.',
         ];
 
         const handleStartingPhraseClick = (phrase: string) => {
@@ -62,7 +62,7 @@ export default function Chat1({ changeStage, createList }: { changeStage: () => 
     //#endregion
     
     return (
-        <div className="relative flex flex-col mx-auto w-[80%] md:w-[65%] mt-[-25vh] sm:mt-[-30vh] md:mt-[-30vh] lg:mt-[-45vh] text-[3vw] sm:text-[2.5vw] md:text-[2vw] lg:text-[1.25vw]">
+        <div className="relative flex flex-col mx-auto w-[85%] md:w-[65%] mt-[350px] sm:mt-[350px] md:mt-[400px] lg:mt-[400px] text-[3vw] sm:text-[2.5vw] md:text-[2vw] lg:text-[1.25vw]">
 
             <h1 className="mb-4 text-center">
                 You can now speak freely to the chatbot by typing into the box below. You can send <span className="font-semibold">up to 10 messages</span>, but do not have to use all of them. Use this time to see what the chatbot can do, and learn about animals! If you dont know where to start, try using an example prompt.      
@@ -88,7 +88,7 @@ export default function Chat1({ changeStage, createList }: { changeStage: () => 
                 </form>
             )}
 
-            <div className="mb-12 justify-center font-semibold w-[80%]">
+            <div className="mb-12 font-semibold w-[80%]">
                 {startingPhrases.map((phrase, index) => (
                     <button
                         key={index}

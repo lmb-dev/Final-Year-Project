@@ -24,12 +24,12 @@ export default function Intro({onBlurClick}: {onBlurClick:() => void}) {
       <div className="border-line"></div>
       
       <div className={`intro-fill ${isClicked ? 'title-up' : ''}`}>
-        <h1 className="intro-title text-[6vw] font-bold mb-3 mt-28">Welcome to <br></br> Dual-Bot Insights <span className="version-text"> Version 0.5</span></h1>
+        <h1 className="intro-title text-[6vw] font-bold mb-3 mt-28">Welcome to <br></br> Dual-Bot Insights <span className="version-text"> Version 1.0</span></h1>
         <p className="intro-text text-[2vw] sm:text-[1.5vw] md:text-[1.25vw] lg:text-[0.75vw]">This website is host to a study that explores peoples preferences when interacting with chatbots in an effort to improve our understanding of Human-Machine Communication</p>        
       </div>
 
       <div className={`${isClicked ? 'info-up' : ''}`} style={{zIndex:'1'}}>       
-        <svg style={{zIndex:'1', marginTop: '-2px'}} className='max-w' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <svg style={{zIndex:'1', marginTop: '0px'}} className='max-w' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path fill="var(--background-light)" fillOpacity="1" d="M0,224L0,288L72,288L72,192L144,192L144,128L216,128L216,256L288,256L288,96L360,96L360,160L432,160L432,64L504,64L504,288L576,288L576,160L648,160L648,224L720,224L720,64L792,64L792,128L864,128L864,224L936,224L936,224L1008,224L1008,32L1080,32L1080,160L1152,160L1152,288L1224,288L1224,320L1296,320L1296,224L1368,224L1368,32L1440,32L1440,0L1368,0L1368,0L1296,0L1296,0L1224,0L1224,0L1152,0L1152,0L1080,0L1080,0L1008,0L1008,0L936,0L936,0L864,0L864,0L792,0L792,0L720,0L720,0L648,0L648,0L576,0L576,0L504,0L504,0L432,0L432,0L360,0L360,0L288,0L288,0L216,0L216,0L144,0L144,0L72,0L72,0L0,0L0,0Z"></path>
         </svg> 
 

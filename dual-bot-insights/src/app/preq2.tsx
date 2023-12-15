@@ -174,7 +174,7 @@ export default function Preq2({ changeStage, createList }: { changeStage: () => 
     //#endregion
   
     return (
-        <div className="relative flex flex-col justify-center items-center w-full text-[2.5vw] sm:text-[2.5vw] md:text-[2.5vw] lg:text-[1.75vw] mt-[-25vh] sm:mt-[-30vh] md:mt-[-30vh] lg:mt-[-45vh]">
+        <div className="relative flex flex-col justify-center items-center w-full text-[3Svw] sm:text-[2.5vw] md:text-[2.5vw] lg:text-[1.75vw] mt-[350px] sm:mt-[350px] md:mt-[400px] lg:mt-[400px]">
             <h1 className="mb-2 text-center w-[90%]">
                 Below are a number of characteristics that may or may not apply to you. For example, do you agree that you are someone who likes to spend time with others? Please select each option to indicate the extent to which you agree or disagree with the statement.<br></br><br></br><i> I am someone who:</i>
             </h1>

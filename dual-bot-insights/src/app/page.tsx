@@ -20,7 +20,9 @@ import PostQ2 from './postq2'
 
 import End from './end'
 
+
 import React, { useEffect, useState } from 'react';
+
 
 const randomizer = Math.random(); //randomize for order effect
 
@@ -102,44 +104,24 @@ export default function Home() {
       }
     
     case 8:
-      currentStage = <End/>
+      currentStage = <End {...dbList}/> 
       break;
   }
   
-    
-  //#region dev hacks
-    const handleKeyDown = (event: { shiftKey: any; key: string; }) => {
-      if (event.shiftKey && event.key === 'S') {
-        changeStage();
-      }
-    };
-
-    const handleKeyDown2 = (event: { shiftKey: any; key: string; }) => {
-      if (event.shiftKey && event.key === 'A') {
-        setStage(stage-1);
-      }
-    };
-
-    useEffect(() => {
-      window.addEventListener('keydown', handleKeyDown);
-      window.addEventListener('keydown', handleKeyDown2);
-    }); 
-  //#endregion
-  
   return (
     <main className="flex flex-col">   
-      <div>
+      <div className='absolute'>
         <Intro onBlurClick={onBlurClick}/>
       </div>
       
-      <div className={blurBody ? 'main-blur' : 'blur'} style={{ pointerEvents: blurBody ? 'all' : 'none' }}>
-        {currentStage}
+      <div className={blurBody ? 'main-blur' : 'blur'} style={{ pointerEvents: blurBody ? 'all' : 'none' }}>  
+        {currentStage} 
       </div>
 
       <Header />
       <DarkMsg />
     </main>
-
   );
 }
+
 
