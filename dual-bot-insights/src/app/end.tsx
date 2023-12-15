@@ -10,6 +10,8 @@ export default function End(dbList: number[]) {
   
   const [buttonClicked, setButtonClicked] = useState(false);
   const handleDB = async () => {
+    setButtonClicked(true);
+
     const response = await fetch('/api/create-table', {
       method: 'POST',
       headers: {
@@ -17,8 +19,6 @@ export default function End(dbList: number[]) {
       },
       body: JSON.stringify({ dbList }), 
     });
-
-    setButtonClicked(true);
   }
 
 
