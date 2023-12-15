@@ -24,7 +24,7 @@ export default function Intro({onBlurClick}: {onBlurClick:() => void}) {
       <div className="border-line"></div>
       
       <div className={`intro-fill ${isClicked ? 'title-up' : ''}`}>
-        <h1 className="intro-title text-[6vw] font-bold mb-3 mt-28">Welcome to <br></br> Dual-Bot Insights <span className="version-text"> Version 1.0</span></h1>
+        <h1 className="intro-title text-[6vw] font-bold mb-3 mt-28">Welcome to <br></br> Dual-Bot Insights <span className="version-text"> Version 1.1</span></h1>
         <p className="intro-text text-[2vw] sm:text-[1.5vw] md:text-[1.25vw] lg:text-[0.75vw]">This website is host to a study that explores peoples preferences when interacting with chatbots in an effort to improve our understanding of Human-Machine Communication</p>        
       </div>
 

@@ -29,7 +29,7 @@ export default function End(dbList: number[]) {
       </h1>
 
       {!buttonClicked && (
-        <button className='accent mb-12 font-semibold duration-300 ease-in-out hover:underline' onClick={handleDB}>Please Click here to send off your results!</button>
+        <button className='accent mb-12 font-semibold duration-300 ease-in-out hover:underline' onClick={handleDB} onTouchStart={handleDB}>Please Click here to send off your results!</button>
       )}
 
       {buttonClicked && (
