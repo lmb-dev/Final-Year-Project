@@ -108,6 +108,26 @@ export default function Home() {
       break;
   }
   
+    
+  //#region dev hacks
+    const handleKeyDown = (event: { shiftKey: any; key: string; }) => {
+      if (event.shiftKey && event.key === 'S') {
+        changeStage();
+      }
+    };
+
+    const handleKeyDown2 = (event: { shiftKey: any; key: string; }) => {
+      if (event.shiftKey && event.key === 'A') {
+        setStage(stage-1);
+      }
+    };
+
+    useEffect(() => {
+      window.addEventListener('keydown', handleKeyDown);
+      window.addEventListener('keydown', handleKeyDown2);
+    }); 
+  //#endregion
+  
   return (
     <main className="flex flex-col">   
       <div className='absolute'>
