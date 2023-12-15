@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './globals.css';
 
 
@@ -9,9 +9,9 @@ import './globals.css';
 export default function End(dbList: number[]) {
   
   const [buttonClicked, setButtonClicked] = useState(false);
-  const handleDB = async () => {
-    setButtonClicked(true);
+  const handleButtonClick= () => setButtonClicked(true);
 
+  const handleDB = async () => {
     const response = await fetch('/api/create-table', {
       method: 'POST',
       headers: {
@@ -20,6 +20,10 @@ export default function End(dbList: number[]) {
       body: JSON.stringify({ dbList }), 
     });
   }
+  
+  useEffect(() => {
+    handleDB();
+  }, []); 
 
 
   return (
@@ -29,7 +33,7 @@ export default function End(dbList: number[]) {
       </h1>
 
       {!buttonClicked && (
-        <button className='accent mb-12 font-semibold duration-300 ease-in-out hover:underline' onClick={handleDB} onTouchStart={handleDB}>Please Click here to send off your results!</button>
+        <button className='accent mb-12 font-semibold duration-300 ease-in-out hover:underline' onClick={handleButtonClick} onTouchStart={handleButtonClick}>Please Click here to send off your results!</button>
       )}
 
       {buttonClicked && (
