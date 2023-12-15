@@ -80,7 +80,7 @@ export default function Chat1({ changeStage, createList }: { changeStage: () => 
 
             {messageCount < 10 && (
                 <form onSubmit={handleSubmit} className="flex gap-4 mb-6">
-                    <input className="chat-input border-slate/50 py-2 px-4 text" placeholder="Ask about Geography..." value={input} onChange={handleInputChange}/>
+                    <input className="chat-input border-slate/50 py-2 px-4 text" placeholder="Ask about Animals..." value={input} onChange={handleInputChange}/>
                     <button className="title font-semibold send-input" type="submit" style={{ filter: isHoveredSend ? `drop-shadow(0 0 3px ${'var(--text-three)'})` : 'none' }} onMouseEnter={handleMouseEnterSend} onMouseLeave={handleMouseLeaveSend} onTouchStart={handleMouseEnterSend} onTouchEnd={handleMouseLeaveSend}>Send</button>
                 </form>
             )}
