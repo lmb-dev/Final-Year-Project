@@ -62,7 +62,7 @@ export default function Chat1({ changeStage, createList }: { changeStage: () => 
         <div className="relative flex flex-col mx-auto w-[85%] md:w-[65%] mt-[350px] sm:mt-[350px] md:mt-[400px] lg:mt-[400px] text-[3vw] sm:text-[2.5vw] md:text-[2vw] lg:text-[1.25vw]">
 
             <h1 className="mb-4 text-center">
-                You can now speak freely to the chatbot by typing into the box below. You can send <span className="font-semibold">up to 10 messages</span>, but do not have to use all of them. Use this time to see what the chatbot can do, and learn about animals. If you dont know where to start, try using an example prompt.   
+                You can now speak freely to <span className="font-semibold">Chatbot A</span> by typing into the box below. You can send <span className="font-semibold">up to 10 messages</span>, but do not have to use all of them. Use this time to see what the chatbot can do, and learn about animals. If you dont know where to start, try using an example prompt.   
             </h1>
 
             <ul className="mb-4" style={{color: `${'var(--text-three)'}`}}> 
