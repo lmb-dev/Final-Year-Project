@@ -31,12 +31,3 @@ This file outlines the structure of this gitlab repo:
             tailwind.config.json - tailwind css setup
             tsconfig.json - typescript config
 
-
-
-            Welcome to <br></br> Dual-Bot Insights 
-
-            This website is host to a study that explores people's preferences when interacting with chatbots in an effort to improve our understanding of Human-Machine Communication
-
-              <li>You are about to answer a few general questions, and then interact with two chatbots, each with a unique style. Afterwards you'll be asked several questions about your interactions with them</li>
-              <li>Any data provided will be kept secure and used only for the purpose of this study</li>
-              <li>Chatbots have been known to "hallucinate" meaning that they can generate incorrect or nonsensical responses. These occurences should be recognised and taken into account</li>
