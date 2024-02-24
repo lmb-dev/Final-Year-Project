@@ -12,13 +12,15 @@ def process_data(values):
     age = values[2]
     education = values[3]
     computer = values[4]
-    extraversion = values[10] + values[15] - values[5]
-    agreeableness = values[6] + values[16] - values[11]
-    conscientiousness = values[17] - values[7] - values[12]
-    negativeEmotionality = values[8] + values[13] - values[18]
-    openMindedness = values[9] + values[19] - values[14]
-    positiveGAAIS = values[20] + values[21] + values[22] + values[23]
-    negativeGAAIS = values[24] + values[25] + values[26] + values[27]
+    
+    extraversion = values[10] + values[15] + (6-values[5])
+    agreeableness = values[6] + values[16] + (6-values[11])
+    conscientiousness = values[17] + (6-values[7]) + (6-values[12])
+    negativeEmotionality = values[8] + values[13] + (6-values[18])
+    openMindedness = values[9] + values[19] + (6-values[14])
+    
+    positiveGAAIS = sum(values[20:24]) / 4
+    negativeGAAIS = sum(values[24:28]) / 4 
 
     # conditional order of which bot is first
     if values[28] == 0:
@@ -69,10 +71,11 @@ workbook = openpyxl.load_workbook('Study Results.xlsx')
 # Get the sheets
 raw_data_sheet = workbook['Raw Data']
 processed_data_sheet = workbook['Processed Data']
+valid_data_sheet = workbook['Valid Data']
 
-# Clear existing data in the "Processed Data" sheet
+# Clear existing data in the "Processed Data" sheet and "Valid Data" sheet
 processed_data_sheet.delete_rows(2, processed_data_sheet.max_row)
-
+valid_data_sheet.delete_rows(2, valid_data_sheet.max_row)
 
 # Iterate through rows starting from the second row (index 2)
 for row_index in range(2, raw_data_sheet.max_row + 1):
@@ -106,6 +109,7 @@ for row_index in range(2, raw_data_sheet.max_row + 1):
         final_column_cell.fill = red_fill
     else:
         final_column_cell.fill = green_fill
+        valid_data_sheet.append(result[:-1])            #copy sheet with only accpeted results
 
 
 # Save the workbook with the processed data
