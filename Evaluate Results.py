@@ -2,7 +2,7 @@ import openpyxl
 import numpy as np
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
-
+from scipy.stats import pearsonr
 
 # Load the workbook
 workbook = openpyxl.load_workbook('Study Results.xlsx')
@@ -126,6 +126,73 @@ print(f"Range: {negative_GAAIS_stats[2]:.2f} - {negative_GAAIS_stats[3]:.2f}")
 
 
 
+#Pearson's
+def pearsons_correlation(column_x_index, column_y_index):
+    x_values = [row[column_x_index - 1].value for row in processed_data_sheet.iter_rows(min_row=2, max_col=processed_data_sheet.max_column)]
+    y_values = [row[column_y_index - 1].value for row in processed_data_sheet.iter_rows(min_row=2, max_col=processed_data_sheet.max_column)]
+
+    correlation_coefficient, p_value = pearsonr(x_values, y_values)
+    if p_value < 0.05:
+        is_significant = True
+    else:
+         is_significant = False
+        
+    if correlation_coefficient < 0:
+        correlation_direction = "Negative"
+    else:
+        correlation_direction = "Positive"
+
+
+    column_x_title = get_column_title(column_x_index)
+    column_y_title = get_column_title(column_y_index)
+    
+    print(f"\nPearson's correlation coefficient between '{column_x_title}' and '{column_y_title}': {correlation_coefficient}")
+    print(f"P-value: {p_value}")
+    print(f"Significant: {is_significant}")
+       
+    if is_significant:
+        return (f"'{column_x_title}' and '{column_y_title}'", correlation_direction)
+    else:
+        return None
+
+def get_column_title(column_index):
+    return processed_data_sheet.cell(row=1, column=column_index).value
+
+
+y_column_indices = [14,19,15,20,16,21,17,22]
+x_column_indices = [2,3,4,5,6,7,8,9,10,11,12]
+significant_correlations = []
+
+for column_x in x_column_indices:
+    for column_y in y_column_indices:
+        correlation = pearsons_correlation(column_x, column_y)
+        if correlation:
+            significant_correlations.append(correlation)
+
+print("\nSignificant Correlations:")
+for correlation, direction in significant_correlations:
+    print(f"{correlation} ({direction} correlation)")
+
+
+def scatterplot(column_x_index, column_y_index):
+    # Extract values from the specified columns
+    x_values = [row[column_x_index - 1].value for row in processed_data_sheet.iter_rows(min_row=2, max_col=processed_data_sheet.max_column)]
+    y_values = [row[column_y_index - 1].value for row in processed_data_sheet.iter_rows(min_row=2, max_col=processed_data_sheet.max_column)]
+
+    # Create scatter plot
+    plt.figure(figsize=(8, 6))
+    plt.scatter(x_values, y_values,color='red', alpha=0.5)
+    plt.title(f'Scatter Plot: {get_column_title(column_x_index)} vs {get_column_title(column_y_index)}')
+    plt.xlabel(get_column_title(column_x_index))
+    plt.ylabel(get_column_title(column_y_index))
+    plt.grid(True)
+    plt.show()
+
+
+#scatterplot(8, 17)
+#scatterplot(8, 22)
+
+
 #correlation analysis
 def multiple_regression(dependent_column_index, independent_column_indices):
     # Extract values from the specified columns
@@ -143,12 +210,9 @@ def multiple_regression(dependent_column_index, independent_column_indices):
 
 
 
-print(f"\n\nChatbot A Useful: {(multiple_regression(14, [2,3,4,5,6,7,8,9,10,11,12])).summary()}")
-print(f"\n\nChatbot A Engaging: {(multiple_regression(15, [2,3,4,5,6,7,8,9,10,11,12])).summary()}")
-print(f"\n\nChatbot A Untrustworthy: {(multiple_regression(16, [2,3,4,5,6,7,8,9,10,11,12])).summary()}")
-print(f"\n\nChatbot A Quality: {(multiple_regression(17, [2,3,4,5,6,7,8,9,10,11,12])).summary()}")
 
-print(f"\n\nChatbot B Useful: {(multiple_regression(19, [2,3,4,5,6,7,8,9,10,11,12])).summary()}")
-print(f"\n\nChatbot B Engaging: {(multiple_regression(20, [2,3,4,5,6,7,8,9,10,11,12])).summary()}")
-print(f"\n\nChatbot B Untrustworthy: {(multiple_regression(21, [2,3,4,5,6,7,8,9,10,11,12])).summary()}")
+print(f"\n\nChatbot A Quality: {(multiple_regression(17, [2,3,4,5,6,7,8,9,10,11,12])).summary()}")
 print(f"\n\nChatbot B Quality: {(multiple_regression(22, [2,3,4,5,6,7,8,9,10,11,12])).summary()}")
+
+print(f"\n\nChatbot A Useful: {(multiple_regression(14, [2,3,4,5,6,7,8,9,10,11,12])).summary()}")
+print(f"\n\nChatbot B Useful: {(multiple_regression(19, [2,3,4,5,6,7,8,9,10,11,12])).summary()}")
