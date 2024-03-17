@@ -2,7 +2,10 @@ import openpyxl
 import numpy as np
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
-from scipy.stats import pearsonr
+from scipy.stats import pearsonr, shapiro
+from statsmodels.stats.diagnostic import het_breuschpagan, het_white
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+from statsmodels.stats.stattools import durbin_watson
 
 # Load the workbook
 workbook = openpyxl.load_workbook('Study Results.xlsx')
@@ -193,7 +196,6 @@ def scatterplot(column_x_index, column_y_index):
 #scatterplot(8, 22)
 
 
-#correlation analysis
 def multiple_regression(dependent_column_index, independent_column_indices):
     # Extract values from the specified columns
     y_values = [row[dependent_column_index - 1].value for row in processed_data_sheet.iter_rows(min_row=2, max_col=processed_data_sheet.max_column)]
@@ -206,7 +208,37 @@ def multiple_regression(dependent_column_index, independent_column_indices):
     model = sm.OLS(y_values, x_values)
     results = model.fit()
 
+    # Calculate residuals
+    residuals = results.resid
+
+    # Shapiro-Wilk test for normality of residuals
+    sw_statistic, sw_p_value = shapiro(residuals)  # Perform Shapiro-Wilk test
+    print("\nShapiro-Wilk Test for Normality of Residuals:")
+    print(f"Shapiro-Wilk statistic: {sw_statistic}")
+    print(f"P-value: {sw_p_value}")
+
+    # Breusch-Pagan test for homoskedasticity
+    bp_value, bp_p_value, _, _ = het_breuschpagan(residuals, x_values)
+    print("\nBreusch-Pagan Test for Homoskedasticity:")
+    print(f"Breusch-Pagan statistic: {bp_value}")
+    print(f"P-value: {bp_p_value}")
+
+    # Variance Inflation Factor (VIF) for collinearity
+    vif_values = [variance_inflation_factor(x_values, i) for i in range(x_values.shape[1])]
+    print("\nVariance Inflation Factor (VIF) for Collinearity:")
+    for i, vif in enumerate(vif_values):
+        if i == 0:
+            print("Intercept:", vif)
+        else:
+            print(f"X{i}:", vif)
+
+    # Durbin-Watson statistic for autocorrelation
+    dw_statistic = durbin_watson(residuals)
+    print("\nDurbin-Watson Statistic for Autocorrelation:")
+    print(f"Durbin-Watson statistic: {dw_statistic}")
+
     return results
+
 
 
 
