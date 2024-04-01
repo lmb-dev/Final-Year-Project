@@ -5,24 +5,28 @@ from openpyxl.styles import PatternFill
 red_fill = PatternFill(start_color='FF0000', end_color='FF0000', fill_type='solid')
 green_fill = PatternFill(start_color='00FF00', end_color='00FF00', fill_type='solid')
 
+# Extract values from the list and do calculations
 def process_data(values):
-    # Extract values from the list and do calculations
+    # get the raw values
     id = values[0]
     gender = values[1]
     age = values[2]
     education = values[3]
     computer = values[4]
-    
+
+    #sum BFI values (reverse certain scores)
     extraversion = values[10] + values[15] + (6-values[5])
     agreeableness = values[6] + values[16] + (6-values[11])
     conscientiousness = values[17] + (6-values[7]) + (6-values[12])
     negativeEmotionality = values[8] + values[13] + (6-values[18])
     openMindedness = values[9] + values[19] + (6-values[14])
-    
+
+    #sum the GAAIS values then average them
     positiveGAAIS = sum(values[20:24]) / 4
     negativeGAAIS = sum(values[24:28]) / 4 
 
     # conditional order of which bot is first
+    #if speaking to chatbot A first
     if values[28] == 0:
         bot0msg = values[29]
         bot0use = values[30]
@@ -34,7 +38,8 @@ def process_data(values):
         bot1eng = values[37]
         bot1trust = values[38]
         bot1qual = values[39]
-        
+
+    #if speaking to chatbot B first, swap the order
     elif values[28] == 1:
         bot0msg = values[35]
         bot0use = values[36]
@@ -47,7 +52,7 @@ def process_data(values):
         bot1trust = values[32]
         bot1qual = values[33]
 
-    #see if row should be rejected
+    #see if row should be rejected by having no messages to a chatbot
     if values[29] == 0 or values[35] == 0:
         rejected = 1
     else:
@@ -87,18 +92,18 @@ for row_index in range(2, raw_data_sheet.max_row + 1):
         # Break out of the loop if an empty row is encountered
         break
 
-    # Get the input data from the "Raw Data" sheet and convert to integers
+    # Get the input data from the "Raw Data" sheet
     input_data = [
         int(raw_data_sheet.cell(row=row_index, column=col_index).value) 
         if raw_data_sheet.cell(row=row_index, column=col_index).value is not None
-        else 0  # or replace 0 with the default value you want
+        else 0 
         for col_index in range(1, raw_data_sheet.max_column + 1)
     ]
 
-    # Process the data using the process_data function
+    # Process the data (getting the correct order and doing the score calculations)
     result = process_data(input_data)
 
-    # Append the processed data to the "Processed Data" sheet without the fill color
+    # Append the processed data to the "Processed Data" sheet
     processed_data_sheet.append(result)
 
     # Get the cell in the final column
@@ -109,7 +114,7 @@ for row_index in range(2, raw_data_sheet.max_row + 1):
         final_column_cell.fill = red_fill
     else:
         final_column_cell.fill = green_fill
-        valid_data_sheet.append(result[:-1])            #copy sheet with only accpeted results
+        valid_data_sheet.append(result[:-1])            #copy to the valid data sheet only if accepted
 
 
 # Save the workbook with the processed data

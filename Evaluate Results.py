@@ -58,7 +58,7 @@ workbook.close()
 
 
 # Print the Demographic results
-print("Total:", total_records)
+print("Total Participants:", total_records)
 
 print("\nGender distribution:")
 for id, label in gender_dict.items():
@@ -129,6 +129,9 @@ print(f"Range: {negative_GAAIS_stats[2]:.2f} - {negative_GAAIS_stats[3]:.2f}")
 
 
 
+
+
+
 #Pearson's
 def pearsons_correlation(column_x_index, column_y_index):
     x_values = [row[column_x_index - 1].value for row in processed_data_sheet.iter_rows(min_row=2, max_col=processed_data_sheet.max_column)]
@@ -177,23 +180,8 @@ for correlation, direction in significant_correlations:
     print(f"{correlation} ({direction} correlation)")
 
 
-def scatterplot(column_x_index, column_y_index):
-    # Extract values from the specified columns
-    x_values = [row[column_x_index - 1].value for row in processed_data_sheet.iter_rows(min_row=2, max_col=processed_data_sheet.max_column)]
-    y_values = [row[column_y_index - 1].value for row in processed_data_sheet.iter_rows(min_row=2, max_col=processed_data_sheet.max_column)]
-
-    # Create scatter plot
-    plt.figure(figsize=(8, 6))
-    plt.scatter(x_values, y_values,color='red', alpha=0.5)
-    plt.title(f'Scatter Plot: {get_column_title(column_x_index)} vs {get_column_title(column_y_index)}')
-    plt.xlabel(get_column_title(column_x_index))
-    plt.ylabel(get_column_title(column_y_index))
-    plt.grid(True)
-    plt.show()
 
 
-#scatterplot(8, 17)
-#scatterplot(8, 22)
 
 
 def multiple_regression(dependent_column_index, independent_column_indices):
@@ -238,10 +226,6 @@ def multiple_regression(dependent_column_index, independent_column_indices):
     print(f"Durbin-Watson statistic: {dw_statistic}")
 
     return results
-
-
-
-
 
 print(f"\n\nChatbot A Quality: {(multiple_regression(17, [2,3,4,5,6,7,8,9,10,11,12])).summary()}")
 print(f"\n\nChatbot B Quality: {(multiple_regression(22, [2,3,4,5,6,7,8,9,10,11,12])).summary()}")
